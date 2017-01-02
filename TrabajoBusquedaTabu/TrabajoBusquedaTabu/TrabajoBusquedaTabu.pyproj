@@ -25,6 +25,9 @@
     <Compile Include="Movimiento.py" />
     <Compile Include="ProblemaTABU.py" />
     <Compile Include="Solucion.py" />
+    <Compile Include="SolutionGenerator.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TrabajoBusquedaTabu.py" />
     <Compile Include="Vector2D.py" />
   </ItemGroup>
