@@ -17,7 +17,7 @@ class Movimiento:
 		self.router1ToSwap = router1ToSwap 
 		self.router2ToSwap = router2ToSwap
 
-	def applyMovement():
+	def applyMovement(self):
 		if(self.routerToMoveToCell != -1):
 			# el router que estara en una posicion x,y se tiene que mover a otra posicion x,y
 			# de la solucion que estoy usando, le cojo la posicion al router y se la cambio a posToMoveToCell
@@ -26,9 +26,14 @@ class Movimiento:
 			newSolution = Solucion.Solucion(self.solution.clients, positions, self.solution.routerRanges)
 			return newSolution 
 		elif(self.router1ToSwap != -1 and self.router2ToSwap != -1):
-			pass
+			positions = self.solution.routerPositions
+			positionAux = positions[self.router1ToSwap]
+			positions[self.router1ToSwap] = positions[self.router2ToSwap]
+			positions[self.router2ToSwap] = positionAux
+			newSolution = Solucion.Solucion(self.solution.clients, positions, self.solution.routerRanges)
+			return newSolution
 		else:
-			print("Some values are set to -1")
+			print("ERROR. Some values are set to -1")
 
 
 
