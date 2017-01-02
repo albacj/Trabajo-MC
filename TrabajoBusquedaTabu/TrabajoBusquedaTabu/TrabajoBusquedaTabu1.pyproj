@@ -21,7 +21,17 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Movimiento.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProblemaTABU.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Solucion.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TrabajoBusquedaTabu.py" />
+    <Compile Include="Vector2D.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.5" />
