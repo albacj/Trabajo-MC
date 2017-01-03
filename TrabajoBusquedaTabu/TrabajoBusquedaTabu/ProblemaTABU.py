@@ -1,4 +1,6 @@
 import numpy # librer�a que permite arrays, en este caso, tridimensionales
+import math
+
 import Vector2D
 import Movimiento
 import Solucion
@@ -12,9 +14,10 @@ class ProblemaTABU(object):
                 routerRanges = [],
                 initialSolution = None,
                 tabuSize = 51113,
-                iterMax = 0,
+                iterMax = math.log2(max(gridSize.x,gridSize.y)),
                 eliteSize = 20, # como mucho 20 soluciones, el tamanio max de bestSols
-                maxTabuStatus = 0):
+                maxTabuStatus = routerRanges.len()/2,
+				aspirationValue = (maxTabuStatus/2)-math.log2(maxTabuStatus)):
 
 		self.gridSize = gridSize
 		self.clients = clients
@@ -22,7 +25,7 @@ class ProblemaTABU(object):
 		self.routerRanges = routerRanges
 		self.tl = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
 		self.tabuSize = tabuSize
-		self.th = []
+		self.th = numpy.zeros((self.tabuSize))
 		self.currentIter = 0
 		self.iterMax = iterMax
 		self.frequency = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
@@ -31,6 +34,7 @@ class ProblemaTABU(object):
 		self.eliteSize = eliteSize
 		self.maxTabuStatus = maxTabuStatus
 		self.initialSolution = initialSolution
+		self.aspirationValue = aspirationValue
 
 	def stopCondition():
 		pass
@@ -40,7 +44,24 @@ class ProblemaTABU(object):
 		pass
 
 	def maxIterInTabu():
-		pass
+		return aMoveToCell(s) | aSwapp(s)
+
+	def aMoveToCell(s):
+		i = 0
+		k = None
+		while(i <= k):
+			if((tl[i][gridSize.x][gridSize.y] + aspirationValue) <= k):
+				primeS = Movimiento.Movimiento.moveToCell(routerPositions[i],p)
+		return primeS
+
+
+	def aSwapp(s):
+		i = 0
+		k = None
+		while(i <= k):
+			if((max(th[i][routerPositions[j]],tl[j][routerPositions[i]]) + aspirationValue) <= k):
+				primeS = Movimiento.Movimiento.swap(router1ToSwap,router2ToSwap)
+		return primeS
 
 	def improvement(primeSolution, hatSolution):
 		pass
@@ -49,6 +70,9 @@ class ProblemaTABU(object):
 		pass
 
 	def diversificationCondition():
+		pass
+
+	def condTabuViolated():
 		pass
 
     #==============================
@@ -63,10 +87,9 @@ class ProblemaTABU(object):
 		currentIter = 0
 		while(not stopCondition):
 			primeSolution = Movimiento.Movimiento.applyMovement(self.initialSolution)
-			condicionTabuViolada = True # parametro temporal
 			criterioAspiracionCumplido = isBetterThan(primeSolution, initialSolution) and maxIterInTabu # los dos criterios de aspiracion
 			neighbour = primeSolution
-			if((not condicionTabuViolada) or (criterioAspiracionCumplido)): # si se cumple uno de los dos, el estado tabu se cancela
+			if((not condTabuViolated) or (criterioAspiracionCumplido)): # si se cumple uno de los dos, el estado tabu se cancela
 				neighbourStar = Movimiento.Movimiento.applyMovement(self.initialSolution)
 				if(neighbourStar.issubset(neighbour)): # para asegurar que N* es subconjunto de N
 					continue
@@ -78,17 +101,17 @@ class ProblemaTABU(object):
 			self.initialSolution = primeSolution
 			if(improvement(primeSolution, hatSolution)):
 				hatSolution = primeSolution
-			# actualizar frequency
+			# frequency
 			self.frequency = None
 			self.tFrequency = None
 			self.bestSols.append(primeSolution)
-			# actualizar recency
+			# recency
 			th =  None
 			tl = None
 			if(intensifationCondition):
-                # Perform intensification procedure; -> hacer en este nivel
+                # actualizar parametros de intensificacion (no queda muy claros cuales son)
 				pass
 			if(diversificationCondition):
-                # Perform diversification procedures; -> hacer en este nivel
+                # actualizar parametros de diversificacion (no queda muy claro cuales son)
 				pass
 		return hatSolution
