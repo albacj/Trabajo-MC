@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AlgoritmoTabu.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Movimiento.py" />
     <Compile Include="ProblemaTABU.py" />
     <Compile Include="Solucion.py" />
