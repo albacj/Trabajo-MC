@@ -8,9 +8,10 @@ class Client:
 class Solucion:
 
 	def __init__(self, clients, routersPosition, routersRange):
+		routerCount = len(routersPosition)
 		self.adjMatrix = self.generateSolution(clients, routersPosition, routersRange)
-		self.giantCompSize = 0
-		self.connectedUsers = 0
+		self.giantCompSize = self.getGiantComponentSize(routerCount)
+		self.connectedUsers = self.getConnectedUsers(routerCount,self.adjMatrix)
 		
 	# Falta: actualizar giantCompSize y connectedUsers
 	# giantCompSize Hay que averiguar todas las componentes conexas de los routers en la matriz de adyacencia (viendolo como grafo) para ver cual es la mas grande
@@ -53,12 +54,58 @@ class Solucion:
 		for i in range (0, len(adjMatrix)):
 			for j in range (0, len(adjMatrix)):
 				adjMatrix[i][j] = isLinked(i,j)
-		return adjMatrix	
+		return adjMatrix
 
-# Este método debe calcular los usuarios conectados a routers
-#	def calculateConnectedUsers(self, adjMatrix):
-#		for i in range (0, len(adjMatrix)-1):
-#			if (not routerPositions in adjMatrix[i]): 
-#				if (clients in adjMatrix[i]):
-#					connectedUsers = connectedUsers + 1
-#		return connectedUsers
+	def getGiantComponentSize(self, routerCount):
+		connectedComponents = self.getConnectedComponents(routerCount, self.adjMatrix)
+		return len(max(connectedComponents, key= len))
+
+	# Este método debe calcular los usuarios conectados a routers
+	def getConnectedUsers(self, routerCount, adjMatrix):
+		connectedUsers = 0
+		# Recorremos las filas de la matriz que corresponda solo a usuarios
+		for row in range(routerCount, len(adjMatrix)):
+			for col in range(len(adjMatrix[row])):
+				if adjMatrix[row][col] == 1:
+					connectedUsers = connectedUsers + 1
+					break
+		return connectedUsers
+
+	def getConnectedComponents(self, routerCount, adjMatrix):
+		result = []
+		routers = set(range(routerCount))
+
+		def getNeighborsRouters(routerIndex, routerCount, adjMatrix):
+			neighbors = set()
+			adjRow = adjMatrix[routerIndex]
+			# Recorre todos las posiciones que corresponden a los routers
+			for router in adjRow[0:routerCount]:
+				if router == 1:
+					neighbors.add(router)
+			return neighbors
+
+		while(len(routers) > 0):
+
+			router = routers.pop()
+
+			connectedComponent = {router}
+
+			pendingRouters = [router]
+
+			while(len(pendingRouters) > 0):
+
+				currentRouter = pendingRouters.pop()
+				neighbors = getNeighborsRouters(currentRouter, routerCount, adjMatrix)
+
+				# Eliminamos de neighbors los routers ya visitados
+				neighbors.difference_update(connectedComponent)
+				# Eliminamos de routers los routers que queden en neighbors
+				routers.difference_update(neighbors)
+				# Aniadimos los vecinos restantes a la componente conexa
+				connectedComponent.update(neighbors)
+				# Aniadimos a la lista de routers pendientes los vecinos para visitarlos en las proximas iteraciones
+				pendingRouters.extend(neighbors)
+
+			result.append(connectedComponent)
+
+		return result
