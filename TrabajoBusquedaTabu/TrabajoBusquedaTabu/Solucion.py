@@ -10,7 +10,7 @@ class Solucion:
 	def __init__(self, clients, routersPosition, routersRange):
 		self.adjMatrix = self.generateSolution(clients, routersPosition, routersRange)
 		self.giantCompSize = 0
-		self.connectedUsers = 0 
+		self.connectedUsers = 0
 		
 	# Falta: actualizar giantCompSize y connectedUsers
 	# giantCompSize Hay que averiguar todas las componentes conexas de los routers en la matriz de adyacencia (viendolo como grafo) para ver cual es la mas grande
@@ -46,9 +46,19 @@ class Solucion:
 				return 0
 
 		matrixLen = len(routerPositions)+len(clients)
+				
+		
 		adjMatrix = [[0] * matrixLen for i in range(matrixLen)]
 
 		for i in range (0, len(adjMatrix)):
 			for j in range (0, len(adjMatrix)):
 				adjMatrix[i][j] = isLinked(i,j)
-		return adjMatrix		
+		return adjMatrix	
+
+# Este método debe calcular los usuarios conectados a routers
+#	def calculateConnectedUsers(self, adjMatrix):
+#		for i in range (0, len(adjMatrix)-1):
+#			if (not routerPositions in adjMatrix[i]): 
+#				if (clients in adjMatrix[i]):
+#					connectedUsers = connectedUsers + 1
+#		return connectedUsers

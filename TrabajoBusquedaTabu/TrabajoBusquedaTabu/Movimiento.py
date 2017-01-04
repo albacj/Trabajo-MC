@@ -19,8 +19,6 @@ class Movimiento:
 
 	def applyMovement(self):
 		if(self.routerToMoveToCell != -1):
-			# el router que estara en una posicion x,y se tiene que mover a otra posicion x,y
-			# de la solucion que estoy usando, le cojo la posicion al router y se la cambio a posToMoveToCell
 			positions = self.solution.routerPositions
 			positions[self.routerToMoveToCell] = self.posToMoveToCell
 			newSolution = Solucion.Solucion(self.solution.clients, positions, self.solution.routerRanges)
