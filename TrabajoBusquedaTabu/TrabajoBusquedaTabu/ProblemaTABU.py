@@ -15,7 +15,7 @@ class ProblemaTABU(object):
                 initialSolution = None,
                 tabuSize = 51113,
                 iterMax = math.log2(max(gridSize.x,gridSize.y)),
-                eliteSize = 20, # como mucho 20 soluciones, el tamanio max de bestSols
+                eliteSize = 0, # como mucho 20 soluciones, el tamanio max de bestSols, pero empieza en 0
                 maxTabuStatus = routerRanges.len()/2,
 				aspirationValue = (maxTabuStatus/2)-math.log2(maxTabuStatus)):
 
@@ -35,6 +35,7 @@ class ProblemaTABU(object):
 		self.maxTabuStatus = maxTabuStatus
 		self.initialSolution = initialSolution
 		self.aspirationValue = aspirationValue
+        self.freqsBest = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
 
 
     # ==================================
@@ -51,22 +52,22 @@ class ProblemaTABU(object):
 	def maxIterInTabu():
 		return aMoveToCell(s) | aSwapp(s)
 
-	def aMoveToCell(s):
-		i = 0
-		k = None
-		while(i <= k):
-			if((tl[i][gridSize.x][gridSize.y] + aspirationValue) <= k):
-				primeS = Movimiento.Movimiento.moveToCell(routerPositions[i],p)
-		return primeS
+	#def aMoveToCell(s):
+	#	i = 0
+	#	k = None
+	#	while(i <= k): # k es una constante multiplicativa segun el documento
+	#		if((tl[i][gridSize.x][gridSize.y] + aspirationValue) <= k):
+	#			primeS = Movimiento.Movimiento.moveToCell(routerPositions[i],p)
+	#	return primeS
 
 
-	def aSwapp(s):
-		i = 0
-		k = None
-		while(i <= k):
-			if((max(th[i][routerPositions[j]],tl[j][routerPositions[i]]) + aspirationValue) <= k):
-				primeS = Movimiento.Movimiento.swap(router1ToSwap,router2ToSwap)
-		return primeS
+	#def aSwapp(s):
+	#	i = 0
+	#	k = None
+	#	while(i <= k):
+	#		if((max(th[i][routerPositions[j]],tl[j][routerPositions[i]]) + aspirationValue) <= k):
+	#			primeS = Movimiento.Movimiento.swap(router1ToSwap,router2ToSwap)
+	#	return primeS
 
 	def improvement(primeSolution, hatSolution):
 		pass
@@ -114,9 +115,51 @@ class ProblemaTABU(object):
 			th =  None
 			tl = None
 			if(intensifationCondition):
-                # actualizar parametros de intensificacion (no queda muy claros cuales son)
-				pass
+                # intensificacion
+				self.eliteSize = self.eliteSize + 1
+                self.freqsBest =
 			if(diversificationCondition):
-                # actualizar parametros de diversificacion (no queda muy claro cuales son)
-				pass
+                # diversificacion
+				self.tFrequency = self.tFrequency.sort(reversed = True)
+                self.freqsBest =
+                # en este nivel se podría el strong diversification
 		return hatSolution
+
+#    sBest ← s0
+
+#tabuList ← []
+
+#while (not stoppingCondition())
+
+#	candidateList ← []
+
+#	bestCandidate ← null
+
+#	for (sCandidate in sNeighborhood)
+
+#		if ( (not tabuList.contains(sCandidate)) and (fitness(sCandidate) > fitness(bestCandidate)) )
+
+#			bestCandidate ← sCandidate
+
+#		end
+
+#	end
+
+
+#	if (fitness(bestCandidate) > fitness(sBest))
+
+#		sBest ← bestCandidate
+
+#	end
+
+#	tabuList.push(bestCandidate);
+
+#	if (tabuList.size > maxTabuSize)
+
+#		tabuList.removeFirst()
+
+#	end
+
+#end
+
+#return sBest
