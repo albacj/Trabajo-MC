@@ -36,6 +36,11 @@ class ProblemaTABU(object):
 		self.initialSolution = initialSolution
 		self.aspirationValue = aspirationValue
 
+
+    # ==================================
+    # funciones auxiliares del algoritmo
+    # ==================================
+
 	def stopCondition():
 		pass
 
