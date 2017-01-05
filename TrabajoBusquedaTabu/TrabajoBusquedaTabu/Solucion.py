@@ -48,7 +48,6 @@ class Solucion:
 
 		matrixLen = len(routerPositions)+len(clients)
 				
-		
 		adjMatrix = [[0] * matrixLen for i in range(matrixLen)]
 
 		for i in range (0, len(adjMatrix)):
