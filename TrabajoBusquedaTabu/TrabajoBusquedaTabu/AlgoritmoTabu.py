@@ -5,13 +5,14 @@ import random
 import Vector2D
 import TrabajoBusquedaTabu
 import Movimiento
+import Solucion
 
 class AlgoritmoTabu(object):
     
     def __init__(self,
                  eliteSize = 20, # como mucho 20
                  best_sols = [],
-                 tl = [],
+                 tl = [[[0 for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))],
                  th = [],
                  tabuSize = 51113,
                  routerList = [],
@@ -53,13 +54,21 @@ class AlgoritmoTabu(object):
         return aMove(s) | aSwapp(s)
 
     def aMove(s, aspirationValue):
-        pass
+        k =
+        aspirationValue = (len(routerList)/2)/2 - math.log2(len(routerList)/2)
+        if(tl[i][a][b] + aspirationValue <= k):
+            primeS = Movimiento.Movimiento.moveToCell("poner")
+        return primeS
 
     def aSwapp(s, aspirationValue):
-        pass
+        k = 
+        if(max(th[]) <= k):
+            primeS = Movimiento.Movimiento.swap("poner")
+        return primeS
 
     def fitness(s):
-        return s.giantCompSize+connectedUsers 
+        #return s.giantCompSize+connectedUsers 
+        return Solucion.Solucion.getGiantComponentSize(s)+Solucion.Solucion.getConnectedUsers(s)
 
     def hashId(self):
         res = 0
@@ -70,12 +79,6 @@ class AlgoritmoTabu(object):
     def hashing(self):
         return random.randint[1, self.tabuSize]
 
-    def intensificationCondition(self):
-        pass
-
-    def diversificationCondition(self):
-        return len(tl) > tabuSize
-
     #==========
     # ALGORITMO
     #==========
@@ -83,7 +86,7 @@ class AlgoritmoTabu(object):
     def TabuSearch(self):
 
         hatSolution = initialSolution
-        tl = []
+        tl = [[[0 for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))]
 
         while(not terminationCondition):
             primeSolution = Movimiento.Movimiento.applyMovement(self.initialSolution)
@@ -102,10 +105,10 @@ class AlgoritmoTabu(object):
                 self.frequency = [[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))]
                 self.tFrequency.append(r)
             self.best_sols.append(hatSolution)
-            if(intensificacionCondition):
+            if(math.log2(max(gridSize.x, gridSize.y)) == ):
                 self.freqsBest = [[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))]
                 self.pxy = freqsBest / (freqsBest[[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))])
-            if(diversificationCondition == True):
+            if(math.log2(max(gridSize.x, gridSize.y)) == ):
                 #soft
                 for r in self.routerList:
                     self.tFrequency.append(r)
