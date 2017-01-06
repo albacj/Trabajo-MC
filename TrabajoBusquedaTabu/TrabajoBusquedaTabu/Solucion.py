@@ -1,22 +1,29 @@
 import Vector2D
+import random
 
 class Client: 
 
 	def __init__(self, position : Vector2D.Vector2D):
 		self.position = position
 
+hashing = None
+
+def generateHashing(largeHash : int, routerCount : int, gridSize : Vector2D.Vector2D):
+	hashing = [[[random.randint(1, largeHash) for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(routerCount)]
+	pass
+
 class Solucion:
 
-	def __init__(self, clients, routersPosition, routersRange):
-		routerCount = len(routersPosition)
-		self.adjMatrix = self.generateSolution(clients, routersPosition, routersRange)
-		self.giantCompSize = self.getGiantComponentSize(routerCount)
-		self.connectedUsers = self.getConnectedUsers(routerCount,self.adjMatrix)
-		
-	# Falta: actualizar giantCompSize y connectedUsers
-	# giantCompSize Hay que averiguar todas las componentes conexas de los routers en la matriz de adyacencia (viendolo como grafo) para ver cual es la mas grande
-	# connectedUsers Hay que mirar la matriz de adyacencia y ver todos los usuarios conectados a un router
-
+	def __init__(self, clients, routersPosition, routerRanges):
+		self.routerCount = len(routersPosition)
+		self.clients = clients
+		self.routerPositions = routersPosition
+		self.routerRanges = routerRanges
+		self.adjMatrix = self.generateSolution(clients, routersPosition, routerRanges)
+		self.giantCompSize = self.getGiantComponentSize(self.routerCount)
+		self.connectedClients = self.getConnectedClients(self.routerCount,self.adjMatrix)
+	
+	
 	def generateSolution(self, clients, routerPositions, routerRanges):
 
 		def isLinked(n0, n1):
@@ -60,15 +67,15 @@ class Solucion:
 		return len(max(connectedComponents, key= len))
 
 	# Este método debe calcular los usuarios conectados a routers
-	def getConnectedUsers(self, routerCount, adjMatrix):
-		connectedUsers = 0
+	def getConnectedClients(self, routerCount, adjMatrix):
+		connectedClients = 0
 		# Recorremos las filas de la matriz que corresponda solo a usuarios
 		for row in range(routerCount, len(adjMatrix)):
 			for col in range(len(adjMatrix[row])):
 				if adjMatrix[row][col] == 1:
-					connectedUsers = connectedUsers + 1
+					connectedClients = connectedClients + 1
 					break
-		return connectedUsers
+		return connectedClients
 
 	def getConnectedComponents(self, routerCount, adjMatrix):
 		result = []
@@ -108,3 +115,10 @@ class Solucion:
 			result.append(connectedComponent)
 
 		return result
+
+	def getHash(self):
+		solution = Solucion.Solucion(solution)
+		hash = 0
+		for rIndex in range(self.routerCount):
+			hash = hash + hashing[rIndex,self.routerPositions[rIndex].x,self.routerPositions[rIndex].y]
+		return hash
