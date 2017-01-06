@@ -44,6 +44,18 @@ class AlgoritmoTabu(object):
         pass
 
     def holdAspirationCriteria(self):
+        return a1 or a2
+
+    def a1(s): # s de solucion inicial
+        pass
+
+    def a2(s):
+        return aMove(s) | aSwapp(s)
+
+    def aMove(s, aspirationValue):
+        pass
+
+    def aSwapp(s, aspirationValue):
         pass
 
     def fitness(s):
