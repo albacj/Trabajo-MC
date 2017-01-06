@@ -4,6 +4,7 @@ import random
 
 import Vector2D
 import TrabajoBusquedaTabu
+import Movimiento
 
 class AlgoritmoTabu(object):
     
@@ -17,7 +18,8 @@ class AlgoritmoTabu(object):
                  gridSize = Vector2D.Vector2D(),
                  frequency = [[[0 for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))],
                  tFrequency = [],
-                 freqsBest = [[[0 for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))]
+                 freqsBest = [[[0 for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))],
+                 pxy = 0.0
                  ):
         self.best_sols = best_sols
         self.eliteSize = eliteSize
@@ -29,6 +31,7 @@ class AlgoritmoTabu(object):
         self.frequency = frequency
         self.tFrequency = tFrequency
         self.freqsBest = freqsBest
+        self.pxy = pxy
 
     #=====================
     # Funciones auxiliares
@@ -44,7 +47,7 @@ class AlgoritmoTabu(object):
         pass
 
     def fitness(s):
-        pass
+        return s.giantCompSize+connectedUsers 
 
     def hashId(self):
         res = 0
@@ -57,6 +60,9 @@ class AlgoritmoTabu(object):
 
     def intensificationCondition(self):
         pass
+
+    def diversificationCondition(self):
+        return len(tl) > tabuSize
 
     #==========
     # ALGORITMO
@@ -85,7 +91,24 @@ class AlgoritmoTabu(object):
                 self.tFrequency.append(r)
             self.best_sols.append(hatSolution)
             if(intensificacionCondition):
-                pass
+                self.freqsBest = [[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))]
+                self.pxy = freqsBest / (freqsBest[[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))])
+            if(diversificationCondition == True):
+                #soft
+                for r in self.routerList:
+                    self.tFrequency.append(r)
+                self.tFrequency.sort(reverse = True)
+                # cojo los primeros 10% de los routers para cambiarles la posicion acorde a freqsBests
+                toChange10 = self.tFrequency[0:len(tFrequency)*0.1]
+                self.freqsBest = [[[t for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(toChange10))]
+                #strong
+                #se cambia el 25% de los routers de posicion
+                #la nueva solucion se genera a partir de la actual
+                toChange25 = elf.tFrequency[0:len(tFrequency)*0.25]
+                self.freqsBest = [[[t for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(toChange25))]
+                initialSolution = initialSolution + freqsBest
+                hatSolution = initialSolution
+        return hatSolution
 
 
 

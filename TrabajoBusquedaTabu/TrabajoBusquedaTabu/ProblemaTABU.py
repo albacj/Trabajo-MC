@@ -1,127 +1,75 @@
 import numpy # librer�a que permite arrays, en este caso, tridimensionales
-import math
-
 import Vector2D
 import Movimiento
-import Solucion
 
 class ProblemaTABU(object):
 
-	def __init__(self,
-				gridSize = Vector2D.Vector2D(),
-				clients = [],
-                routerPositions = [],
-                routerRanges = [],
-                initialSolution = None,
-                tabuSize = 51113,
-                iterMax = math.log2(max(gridSize.x,gridSize.y)),
-                eliteSize = 0, # como mucho 20 soluciones, el tamanio max de bestSols, pero empieza en 0
-                maxTabuStatus = routerRanges.len()/2,
-				aspirationValue = (maxTabuStatus/2)-math.log2(maxTabuStatus)):
+    def __init__(self,
+                 gridSize = Vector2D.Vector2D(),
+                 clients = [],
+                 routerPositions = [],
+                 routerRanges = [],
+                 initialSolution = None,
+                 tabuSize = 0,
+                 iterMax = 0,
+                 eliteSize = 0, 
+                 maxTabuStatus = 0,
+                 recency = 0):
 
-		self.gridSize = gridSize
-		self.clients = clients
-		self.routerPositions = routerPositions
-		self.routerRanges = routerRanges
-		self.tl = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
-		self.tabuSize = tabuSize
-		self.th = numpy.zeros((self.tabuSize))
-		self.currentIter = 0
-		self.iterMax = iterMax
-		self.frequency = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
-		self.tFrequency = numpy.zeros((routerPositions.len()))
-		self.bestSols = numpy.zeros((eliteSize))
-		self.eliteSize = eliteSize
-		self.maxTabuStatus = maxTabuStatus
-		self.initialSolution = initialSolution
-		self.aspirationValue = aspirationValue
-        self.freqsBest = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
+        self.gridSize = gridSize
+        self.clients = clients
+        self.routerPositions = routerPositions
+        self.routerRanges = routerRanges
+        self.tl = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
+        self.tabuSize = tabuSize
+        self.th = []
+        self.currentIter = 0
+        self.iterMax = iterMax
+        self.frequency = numpy.zeros((routerPositions.len(),gridSize.x,gridSize.y))
+        self.tFrequency = numpy.zeros((routerPositions.len()))
+        self.bestSols = numpy.zeros((20)) # como mucho 20
+        self.eliteSize = eliteSize
+        self.maxTabuStatus = maxTabuStatus
+        self.initialSolution = initialSolution
 
-
-    # ==================================
-    # funciones auxiliares del algoritmo
-    # ==================================
-
-	def stopCondition():
-		pass
-
-	def isBetterThan(primeSolution, initialSolution):
-		res = False
-		pass
-
-	def maxIterInTabu():
-		return aMoveToCell(s) | aSwapp(s)
-
-	#def aMoveToCell(s):
-	#	i = 0
-	#	k = None
-	#	while(i <= k): # k es una constante multiplicativa segun el documento
-	#		if((tl[i][gridSize.x][gridSize.y] + aspirationValue) <= k):
-	#			primeS = Movimiento.Movimiento.moveToCell(routerPositions[i],p)
-	#	return primeS
-
-
-	#def aSwapp(s):
-	#	i = 0
-	#	k = None
-	#	while(i <= k):
-	#		if((max(th[i][routerPositions[j]],tl[j][routerPositions[i]]) + aspirationValue) <= k):
-	#			primeS = Movimiento.Movimiento.swap(router1ToSwap,router2ToSwap)
-	#	return primeS
-
-	def improvement(primeSolution, hatSolution):
-		pass
-
-	def intensifationCondition():
-		pass
-
-	def diversificationCondition():
-		pass
-
-	def condTabuViolated():
-		pass
-
+    def isBetterThan(primeSolution, initialSolution):
+        res = False # tiene que devolver True al final
+    
+    def maxIterInTabu():
+        pass
+    
     #==============================
     # Algoritmo de la B�squeda Tabu
     #==============================
-
-	def TabuSearchAlgorithm(self):
-
-		hatSolution = self.initialSolution
-		th = []
-		tl = numpy.zeros((self.routerPositions.len(),self.gridSize.x,self.gridSize.y))
-		currentIter = 0
-		while(not stopCondition):
-			primeSolution = Movimiento.Movimiento.applyMovement(self.initialSolution)
-			criterioAspiracionCumplido = isBetterThan(primeSolution, initialSolution) and maxIterInTabu # los dos criterios de aspiracion
-			neighbour = primeSolution
-			if((not condTabuViolated) or (criterioAspiracionCumplido)): # si se cumple uno de los dos, el estado tabu se cancela
-				neighbourStar = Movimiento.Movimiento.applyMovement(self.initialSolution)
-				if(neighbourStar.issubset(neighbour)): # para asegurar que N* es subconjunto de N
-					continue
-				else:
-					break
-			for s in neighbourStar:
-				if(): # si s cumple con la función objetivo
-					primeSolution = s
-			self.initialSolution = primeSolution
-			if(improvement(primeSolution, hatSolution)):
-				hatSolution = primeSolution
-			# frequency
-			self.frequency = None
-			self.tFrequency = None
-			self.bestSols.append(primeSolution)
-			# recency
-			th =  None
-			tl = None
-			if(intensifationCondition):
-                # intensificacion
-				self.eliteSize = self.eliteSize + 1
-                self.freqsBest =
-			if(diversificationCondition):
-                # diversificacion
-				self.tFrequency = self.tFrequency.sort(reversed = True)
-                self.freqsBest =
-                # en este nivel se podría el strong diversification
-		return hatSolution
-
+    
+    def TabuSearchAlgorithm(self):
+    
+        hatSolution = self.initialSolution
+        th = []
+        tl = numpy.zeros((self.routerPositions.len(),self.gridSize.x,self.gridSize.y))
+        currentIter = 0
+        stopCondition = False # parametro temporal
+        while(not stopCondition):
+            condicionTabuViolada = True # parametro temporal
+            criterioAspiracionCumplido = bestFitness and maxIterInTabu # los dos criterios de aspiracion
+            if((not condicionTabuViolada) or (criterioAspiracionCumplido)):
+                #genera subconjunto de soluciones N*(s) -> hacer en este nivel
+                pass
+            #elijo el mejor conjunto de soluci�n s' (primeSolution) perteneciente a N*(s) que cumpla la f. objetivo
+            # -> hacer en este nivel
+            self.initialSolution = primeSolution
+            improvement = True # parametro temporal
+            if(improvement): # "improvement(primeSolution, hatSolution)" 
+                hatSolution = primeSolution
+            frequency = None #(,,) actualizar
+            recency = None # actualizar
+            intensificationCondition = True # parametro temporal
+            if(intensifationCondition):
+                # Perform intensification procedure; -> hacer en este nivel
+                pass
+            diversificationCondition = True # parametro temporal
+            if(diversificationCondition):
+                # Perform diversification procedures; -> hacer en este nivel
+                pass
+        return hatSolution
+    
