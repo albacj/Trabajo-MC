@@ -13,5 +13,6 @@ import AlgoritmoTabu
 #users = sol.connectedUsers
 #print(giant, users)
 
-tabuSearch = AlgoritmoTabu.AlgoritmoTabu(8,8,3,2,4,0)
-tabuSearch.TabuSearch()
+tabuSearch = AlgoritmoTabu.AlgoritmoTabu(8,8,4,12,1,0)
+best = tabuSearch.TabuSearch()
+print(best)

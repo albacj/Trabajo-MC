@@ -1,7 +1,7 @@
 import Solucion
 import copy
 
-class Movimiento:
+class Movimiento(object):
 	
 	def __init__(self, solution):
 		self.solution = solution
@@ -9,17 +9,20 @@ class Movimiento:
 		self.posToMoveToCell = -1 
 		self.router1ToSwap = -1
 		self.router2ToSwap = -1
+		self.actionIsMove = None
 
 	def isMoveToCell(self):
-		return self.routerToMoveToCell is not -1
+		return self.actionIsMove
 	
 	def moveToCell(self, routerToMoveToCell, posToMoveToCell):
 		self.routerToMoveToCell = routerToMoveToCell
 		self.posToMoveToCell = posToMoveToCell
+		self.actionIsMove = True
 
 	def swap(self, router1ToSwap, router2ToSwap):
 		self.router1ToSwap = router1ToSwap 
 		self.router2ToSwap = router2ToSwap
+		self.actionIsMove = False
 
 	def applyMovement(self):
 		if(self.routerToMoveToCell != -1):

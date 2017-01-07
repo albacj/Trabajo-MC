@@ -9,8 +9,8 @@ class Client:
 hashing = None
 
 def generateHashing(largeHash : int, routerCount : int, gridSize : Vector2D.Vector2D):
-	hashing = [[[random.randint(1, largeHash) for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(routerCount)]
-	pass
+	h = [[[random.randint(1, largeHash) for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(routerCount)]
+	return h
 
 class Solucion:
 
@@ -117,8 +117,8 @@ class Solucion:
 		return result
 
 	def getHash(self):
-		solution = Solucion.Solucion(solution)
 		hash = 0
 		for rIndex in range(self.routerCount):
-			hash = hash + hashing[rIndex,self.routerPositions[rIndex].x,self.routerPositions[rIndex].y]
+			position = self.routerPositions[rIndex]
+			hash = hash + hashing[rIndex][int(position.x)][int(position.y)]
 		return hash
