@@ -1,4 +1,3 @@
-
 import math
 import random
 
@@ -86,14 +85,6 @@ class AlgoritmoTabu(object):
 		solution = Solucion.Solucion(solution)
 		return ((solution.giantCompSize / solution.routerCount) * 0.5) + ((solution.connectedClients / len(solution.clients)) * 0.5)
 
-	def getAspirationSet(self, movements, solutions):
-		#aspiration = []
-		#for i in range(len(movements)):
-		#	ok = self.aspirationCriteriaSatisfied(movements[i], solutions[i])
-		#	if ok:
-		#		aspiration
-		pass
-
 	def getNeighbourhood(self, solution):
 		movements = []
 		neighbourhood = []
@@ -121,8 +112,9 @@ class AlgoritmoTabu(object):
 					neighbourhood.append(movement.applyMovement())
 		return movements, neighbourhood
 
-	def getTabuSet(self, movements, solutions):
-		tabuSet = []
+	def getAdmisibleSet(self, movements, solutions):
+		filter = []
+		for s in solutions:
 
 	def generateTestSolution(self):
 		clients = []
@@ -142,39 +134,46 @@ class AlgoritmoTabu(object):
 		sol = Solucion.Solucion(clients,routersPosition,routersRange)
 		return sol
 
-    def terminationCondition(self, solution, numberOfRouters):
-        solution = Solucion.Solucion(solution)
-        res = False
-        if(solution.getGiantComponentSize.__eq__(numberOfRouters) or self.currentIteration == 100 or len(tl) == 40): # revisar
-            res = True
-        return res
+	def terminationCondition(self, solution, numberOfRouters):
+		solution = Solucion.Solucion(solution)
+		res = False
+		if(solution.getGiantComponentSize.__eq__(numberOfRouters) or self.currentIteration == 100 or len(tl) == 40): # revisar
+			res = True
+		return res
 
+	def isVisited(self):
+		pass
 
+	def setVisited(self):
+		pass
 
 	#==========
 	# ALGORITMO
 	#==========
 
-    def TabuSearch(self):
+	def TabuSearch(self):
 	
 		# Generar solucion inicial
-        solution = self.generateTestSolution()
-        bestSolution = solution
+		solution = self.generateTestSolution()
+		bestSolution = solution
 		self.resetTabuAlgorithm()
 
-		while(not terminationCondition(bestSolution, routerCount):
+		while(not terminationCondition(bestSolution, routerCount)):
 
 			movements, neighbourhood = self.getNeighbourhood(solution)
 			#break
-			self.currentIteration = self.currentIteration + 1
-
-				#if((not conditionTabuViolated) or holdAspirationCriteria):
-				#	neighbourStar = Movimiento.Movimiento.applyMovement(n)
-				#if ((not self.tl.contains(n)) and (fitness(n) > fitness(primeSolution))):
-				#	primeSolution = n
+			
+			#if(aspirationCriteriaSatisfied(m, bestSolution) or movements):
+			#	pass
+			#	#if((not conditionTabuViolated) or holdAspirationCriteria):
+			#	#	neighbourStar = Movimiento.Movimiento.applyMovement(n)
+			#	#if ((not self.tl.contains(n)) and (fitness(n) > fitness(primeSolution))):
+			#	#	primeSolution = n
 			#if(fitness(primeSolution) > fitness(bestSolution)):
 			#	bestSolution = primeSolution
-			#update recency and frequency
+			#	# coger su movimiento y hacerlo tabu
+			#	# actualizar th
+			##update recency and frequency
 			#self.tl.append(primeSolution)
 			#self.th.append(initialSolution.hashId() % self.tabuSize)
 			#for r in self.routerList:
@@ -182,26 +181,23 @@ class AlgoritmoTabu(object):
 			#	self.tFrequency.append(r)
 			#self.best_sols.append(bestSolution)
 			#if(math.log2(max(gridSize.x, gridSize.y)) == ):
-			#	self.freqsBest = [[[r for k in range(gridSize.y)] for j in
-			#	range(gridSize.x)] for i in range(len(routerList))]
-			#	self.pxy = freqsBest / (freqsBest[[[r for k in range(gridSize.y)] for j in
-			#	range(gridSize.x)] for i in range(len(routerList))])
+			#	self.freqsBest = [[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))]
+			#	self.pxy = freqsBest / (freqsBest[[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))])
 			#if(math.log2(max(gridSize.x, gridSize.y)) == ):
 			#	#soft
 			#	for r in self.routerList:
 			#		self.tFrequency.append(r)
 			#	self.tFrequency.sort(reverse = True)
-			#	# cojo los primeros 10% de los routers para cambiarles la posicion acorde
-			#	a freqsBests
+			#	# cojo los primeros 10% de los routers para cambiarles la posicion acorde a freqsBests
 			#	toChange10 = self.tFrequency[0:len(tFrequency)*0.1]
-			#	self.freqsBest = [[[t for k in range(gridSize.y)] for j in
-			#	range(gridSize.x)] for i in range(len(toChange10))]
+			#	self.freqsBest = [[[t for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(toChange10))]
 			#	#strong
 			#	#se cambia el 25% de los routers de posicion
 			#	#la nueva solucion se genera a partir de la actual
 			#	toChange25 = elf.tFrequency[0:len(tFrequency)*0.25]
-			#	self.freqsBest = [[[t for k in range(gridSize.y)] for j in
-			#	range(gridSize.x)] for i in range(len(toChange25))]
+			#	self.freqsBest = [[[t for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(toChange25))]
 			#	initialSolution = initialSolution + freqsBest
 			#	bestSolution = initialSolution
+
+			self.currentIteration = self.currentIteration + 1
 		return bestSolution
