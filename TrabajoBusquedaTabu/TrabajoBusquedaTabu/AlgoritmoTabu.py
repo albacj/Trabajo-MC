@@ -142,23 +142,32 @@ class AlgoritmoTabu(object):
 		sol = Solucion.Solucion(clients,routersPosition,routersRange)
 		return sol
 
+    def terminationCondition(self, solution, numberOfRouters):
+        solution = Solucion.Solucion(solution)
+        res = False
+        if(solution.getGiantComponentSize.__eq__(numberOfRouters) or self.currentIteration == 100 or len(tl) == 40): # revisar
+            res = True
+        return res
+
+
+
 	#==========
 	# ALGORITMO
 	#==========
 
-	def TabuSearch(self):
-		
+    def TabuSearch(self):
+	
 		# Generar solucion inicial
-		solution = self.generateTestSolution()
-		bestSolution = solution
+        solution = self.generateTestSolution()
+        bestSolution = solution
 		self.resetTabuAlgorithm()
 
-		while(self.currentIteration < 1):
+		while(not terminationCondition(bestSolution, routerCount):
 
 			movements, neighbourhood = self.getNeighbourhood(solution)
-
-			break
+			#break
 			self.currentIteration = self.currentIteration + 1
+
 				#if((not conditionTabuViolated) or holdAspirationCriteria):
 				#	neighbourStar = Movimiento.Movimiento.applyMovement(n)
 				#if ((not self.tl.contains(n)) and (fitness(n) > fitness(primeSolution))):
