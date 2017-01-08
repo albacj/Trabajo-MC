@@ -29,7 +29,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Movimiento.py" />
-    <Compile Include="ProblemaTABU.py" />
     <Compile Include="Solucion.py" />
     <Compile Include="SolutionGenerator.py">
       <SubType>Code</SubType>

@@ -340,7 +340,7 @@ class AlgoritmoTabu(object):
 				
 			#diversification
 			if(self.iterationsPerIntensificationDiversification == self.currentIteration):
-				currentSolution = self.applyStrongDiversification(currentSolution)
+				currentSolution = self.applySoftDiversification(currentSolution)
 
 			self.currentIteration = self.currentIteration + 1
 		return bestSolution

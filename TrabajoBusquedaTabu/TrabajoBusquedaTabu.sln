@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TrabajoBusquedaTabu", "TrabajoBusquedaTabu\TrabajoBusquedaTabu.pyproj", "{E2B559C8-2E08-48AD-9284-8AEBA13894D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4CF0896B-22B9-4F91-B27A-BA4A659A3898}"
-	ProjectSection(SolutionItems) = preProject
-		TrabajoBusquedaTabu\AlgoritmoTabuAndreea.py = TrabajoBusquedaTabu\AlgoritmoTabuAndreea.py
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
