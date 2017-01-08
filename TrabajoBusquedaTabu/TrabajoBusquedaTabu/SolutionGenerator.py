@@ -8,25 +8,29 @@ class SolutionGenerator:
 
 	def __init__(self, clients): #Falta routerPositions y routerRanges
 		self.clients = self.AssignClients()
+		
+		self.gridSize = Vector2D.Vector2D(sizeGridX,sizeGridY)
 
-	#Este método ha de asignar aleatoriamente a los clientes en el tablero
-	def AssignClients(self):
+	def getNumRouters(self, gridSize):
+		self.numRouters = self.gridSize / 2
+		return numRouters
+
+	def getnumClients (self, numRouters):
+		self.numClients = self.numRouters * 3
+
+	def AssignClients(self, numClients):
 		clients = [] 
-		grid_size = 32 #Vector2D.Vector2D(15.0,15.0)
-		numberOfRouters = grid_size / 2
-		numberOfClients = numberOfRouters * 3
-		for i in range (1, numberOfClients):
+		for i in range (1, self.numClients):
 			a = int(random.uniform(0,grid_size-1))
 			b = int(random.uniform(0,grid_size-1))
 			clients.append((a,b))
 		return clients
 		
 	#Este método ha de asignar acorde a la distribución especificada los routers en el tablero
-	#def AssignRoutersPositions(self, distribution_probability):
-		#routerPositions = []
-		#grid_size = 32 #Vector2D.Vector2D(15.0,15.0)
-		#numberOfRouters = grid_size / 2
-		#for i in range (1, numberOfRouters):
+	def AssignRoutersPositions(self, gridSize, distribution_probability):
+		routerPositions = []
+		for i in range (1, self.numRouters):
+
 			
 
 	#Este método es el que llamaremos desde la clase TrabajoBusquedaTabu para generar la solucion inicial como adjMatrix

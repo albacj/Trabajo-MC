@@ -64,8 +64,11 @@ class Solucion:
 
 	def getGiantComponentSize(self, routerCount):
 		connectedComponents = self.getConnectedComponents(routerCount, self.adjMatrix)
-		return len(max(connectedComponents, key= len))
+		return len(max(connectedComponents, key=len))
 
+	def clientInGiantComponent(self, clients, routerPositions):
+		pass
+			
 	# Este método debe calcular los usuarios conectados a routers
 	def getConnectedClients(self, routerCount, adjMatrix):
 		connectedClients = 0
@@ -91,15 +94,10 @@ class Solucion:
 			return neighbors
 
 		while(len(routers) > 0):
-
 			router = routers.pop()
-
 			connectedComponent = {router}
-
 			pendingRouters = [router]
-
 			while(len(pendingRouters) > 0):
-
 				currentRouter = pendingRouters.pop()
 				neighbors = getNeighborsRouters(currentRouter, routerCount, adjMatrix)
 

@@ -259,3 +259,4 @@ class AlgoritmoTabu(object):
 
 			self.currentIteration = self.currentIteration + 1
 		return bestSolution
+		print (bestSolution)
