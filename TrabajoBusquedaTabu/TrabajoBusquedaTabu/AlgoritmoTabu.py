@@ -4,14 +4,13 @@ import copy
 import Vector2D
 import Movimiento
 import Solucion
+import SolutionGenerator
 
 class AlgoritmoTabu(object):
 	
 	def __init__(self,
 			sizeGridX,
 			sizeGridY,
-			routerCount,
-			clientCount,
 			kFactor,
 			startChoice, # 0 = Uniforme, 1= Normal, 2 = Exponencial, 3 = Weibull
 			tabuSize=51113, # Tamanio maximo de TH
@@ -19,12 +18,13 @@ class AlgoritmoTabu(object):
 			):
 
 		self.gridSize = Vector2D.Vector2D(sizeGridX,sizeGridY)
-		self.routerCount = routerCount
-		self.clientCount = clientCount
+		self.initialSolution = SolutionGenerator.SolutionGenerator(self.gridSize,startChoice).generateSolution()
+		self.routerCount = self.initialSolution.routerCount
+		self.clientCount = self.initialSolution.clientCount
 		self.maxIteration = sizeGridX * sizeGridY * kFactor
 		self.startChoice = startChoice
 		self.tabuSize = tabuSize
-		self.maxTabuStatus = routerCount / 2
+		self.maxTabuStatus = self.routerCount / 2
 		self.eliteSize = eliteSize
 		self.aspirationValue = (self.maxTabuStatus / 2) - math.log2(self.maxTabuStatus)
 		self.iterationsPerIntensificationDiversification = int(math.log2(max(sizeGridX,sizeGridY)))
@@ -343,14 +343,13 @@ class AlgoritmoTabu(object):
 	def TabuSearch(self):
 	
 		# Generar solucion inicial
-		initialSolution = self.generateTestSolution() #s
-		currentSolution = initialSolution #s'
-		bestSolution = initialSolution #s gorrito
+		currentSolution = self.initialSolution #s'
+		bestSolution = currentSolution #s gorrito
 		self.resetTabuAlgorithm()
-		self.setVisited(initialSolution)
-		maxPenaltyValue = 5
+		self.setVisited(bestSolution)
+		maxPenaltyValue = 3
 		currentPenaltyValue = 0
-		previousBestSolutionFitness = 0
+		previousBestSolutionFitness = self.fitness(bestSolution)
 		
 		while(self.currentIteration < self.maxIteration):
 			print("Iteracion actual: " + str(self.currentIteration))
@@ -362,8 +361,6 @@ class AlgoritmoTabu(object):
 			if(self.fitness(currentSolution) > self.fitness(bestSolution)):
 				bestSolution = currentSolution
 				previousBestSolutionFitness = self.fitness(bestSolution)
-				if previousBestSolutionFitness == 1.0:
-					break
 			else:
 				currentPenaltyValue = currentPenaltyValue + 1
 
@@ -403,6 +400,8 @@ class AlgoritmoTabu(object):
 				currentPenaltyValue = 0
 
 			self.currentIteration = self.currentIteration + 1
+			if self.fitness(bestSolution) == 1.0:
+				break
 
 		return bestSolution
 		print (bestSolution)

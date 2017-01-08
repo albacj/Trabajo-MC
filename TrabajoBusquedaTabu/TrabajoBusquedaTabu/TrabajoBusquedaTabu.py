@@ -13,7 +13,8 @@ import AlgoritmoTabu
 #users = sol.connectedUsers
 #print(giant, users)
 
-tabuSearch = AlgoritmoTabu.AlgoritmoTabu(16,16,8,24,1,0)
+tabuSearch = AlgoritmoTabu.AlgoritmoTabu(4,4,1,4)
+
 best = tabuSearch.TabuSearch()
 print("Fin de Busqueda Tabu")
 print("Matriz de adyacencia")

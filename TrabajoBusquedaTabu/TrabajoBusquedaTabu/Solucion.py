@@ -16,6 +16,7 @@ class Solucion:
 
 	def __init__(self, clients, routersPosition, routerRanges):
 		self.routerCount = len(routersPosition)
+		self.clientCount = len(clients)
 		self.clients = clients
 		self.routerPositions = routersPosition
 		self.routerRanges = routerRanges
