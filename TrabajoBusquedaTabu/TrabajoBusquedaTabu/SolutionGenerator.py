@@ -1,16 +1,15 @@
 import Vector2D
 import Solucion 
-import numpy
-import random
 
 # link de ayuda para el código de las 4 distribuciones:
 # http://relopezbriega.github.io/blog/2016/06/29/distribuciones-de-probabilidad-con-python/
 
 class SolutionGenerator:
 
-	def __init__(self, gridSize): #Falta routerPositions y routerRanges
-		self.clients = self.assignClients()
-		self.gridSize = gridSize 
+	def __init__(self, clients): #Falta routerPositions y routerRanges
+		self.clients = self.AssignClients()
+		
+		self.gridSize = Vector2D.Vector2D(sizeGridX,sizeGridY)
 
 	def getNumRouters(self, gridSize):
 		self.numRouters = self.gridSize / 2
@@ -19,28 +18,19 @@ class SolutionGenerator:
 	def getnumClients (self, numRouters):
 		self.numClients = self.numRouters * 3
 
-	def asignClients(self, numClients):
-
-		def rollDice(prob):
-			n = random.random()
-			return n < prob 
-		def calculateProb(x, distributionType):
-			for i in range (len(x)):
-
-
-		clientsPos = []
-		currentClientIndex = 0 
-		for y in range (self.gridSize.y):
-			for x in range (self.gridSize.x):
-				prob = 1
-				if (rollDice(prob)):
-					v = Vector2D.Vector2D(x,y)
-					clientPos[currentClientIndex] = v
-					currentClientIndex = currentClientIndex + 1
-
-
+	def AssignClients(self, numClients):
+		clients = [] 
+		for i in range (1, self.numClients):
+			a = int(random.uniform(0,grid_size-1))
+			b = int(random.uniform(0,grid_size-1))
+			clients.append((a,b))
+		return clients
+		
 	#Este método ha de asignar acorde a la distribución especificada los routers en el tablero
-	
+	def AssignRoutersPositions(self, gridSize, distribution_probability):
+		routerPositions = []
+		for i in range (1, self.numRouters):
+
 			
 
 	#Este método es el que llamaremos desde la clase TrabajoBusquedaTabu para generar la solucion inicial como adjMatrix
