@@ -1,44 +1,113 @@
 import Vector2D
 import Solucion 
+import numpy as np
+import random
 
 # link de ayuda para el código de las 4 distribuciones:
 # http://relopezbriega.github.io/blog/2016/06/29/distribuciones-de-probabilidad-con-python/
 
 class SolutionGenerator:
 
-	def __init__(self, clients): #Falta routerPositions y routerRanges
-		self.clients = self.AssignClients()
-		
-		self.gridSize = Vector2D.Vector2D(sizeGridX,sizeGridY)
+	def __init__(self, gridSize, generationType): #Falta routerPositions y routerRanges
+		self.gridSize = gridSize
+		self.generationType = generationType  # 0 = Uniforme, 1 = Normal, 2 = Exponencial, 3 = Weibull
 
-	def getNumRouters(self, gridSize):
-		self.numRouters = self.gridSize / 2
-		return numRouters
+	def getNumRouters(self):
+		numRouters = self.gridSize.x * 0.5
+		return int(numRouters)
 
-	def getnumClients (self, numRouters):
-		self.numClients = self.numRouters * 3
+	def getnumClients (self):
+		numClients = self.getNumRouters() * 3
+		return int(numClients)
 
-	def AssignClients(self, numClients):
-		clients = [] 
-		for i in range (1, self.numClients):
-			a = int(random.uniform(0,grid_size-1))
-			b = int(random.uniform(0,grid_size-1))
-			clients.append((a,b))
-		return clients
-		
-	#Este método ha de asignar acorde a la distribución especificada los routers en el tablero
-	def AssignRoutersPositions(self, gridSize, distribution_probability):
+	def getProbability(self, x, elementSize):
+
+		def getUniformProbability():
+			s = np.random.uniform(0.1,1.0,elementSize)
+			return s[x]
+
+		def getNormalProbability():
+			s = np.random.normal(0, 0.1, elementSize) # mu = 0, sigma = 0.1
+			return s[x]
+
+		def getExponentialProbability():
+			s = np.random.exponential(1.0, elementSize)
+			return s[x]
+
+		def getWeibullProbability():
+			s = np.random.weibull(5.0, elementSize) # a = 5
+			return s[x]
+
+		if self.generationType == 0:
+			return getUniformProbability()
+		elif self.generationType == 1:
+			return getNormalProbability()
+		elif self.generationType == 2:
+			return getExponentialProbability()
+		else:
+		    return getWeibullProbability()
+
+	def assignClients(self):
+
+		def rollDice(prob):
+			n = random.random()
+			return n < prob
+
+		clientPositions = []
+		clientSize = self.getnumClients()
+		pendingClients = clientSize
+		currentClient = 0
+		while(pendingClients > 0):
+			prob = self.getProbability(currentClient, clientSize)
+			clientIsPlaced = False
+			for y in range(int(self.gridSize.y)):
+				for x in range (int(self.gridSize.x)):
+					pos = Vector2D.Vector2D(x,y)
+					if pos not in clientPositions:
+						if (rollDice(prob)):
+							clientPositions.append(Solucion.Client(pos))
+							currentClient = currentClient + 1
+							pendingClients = pendingClients - 1
+							clientIsPlaced = True
+							break
+				if clientIsPlaced:
+					break
+		return clientPositions
+
+	def assignRouters(self):
+
+		def rollDice(prob):
+			n = random.random()
+			return n < prob
+
 		routerPositions = []
-		for i in range (1, self.numRouters):
+		routerSize = self.getNumRouters()
+		pendingRouters = routerSize
+		currentRouter = 0
+		while(pendingRouters > 0):
+			prob = self.getProbability(currentRouter, routerSize)
+			routerIsPlaced = False
+			for y in range(int(self.gridSize.y)):
+				for x in range (int(self.gridSize.x)):
+					pos = Vector2D.Vector2D(x,y)
+					if pos not in routerPositions:
+						if (rollDice(prob)):
+							routerPositions.append(pos)
+							currentRouter = currentRouter + 1
+							pendingRouters = pendingRouters - 1
+							routerIsPlaced = True
+							break
+				if routerIsPlaced:
+					break
 
-			
+		return routerPositions
 
-	#Este método es el que llamaremos desde la clase TrabajoBusquedaTabu para generar la solucion inicial como adjMatrix
-	#def generateSolution_init_(self, clients, routerPositions, routerRanges):
-	#	matrixLen = len(routerPositions)+len(clients)
-	#	adjMatrix = [[0] * matrixLen for i in range(matrixLen)]
+	def assignRouterRanges(self):
+		routerRanges = [random.randint(1, 3) for i in range(self.getNumRouters())]
+		return routerRanges		
 
-	#	for i in range (0, len(adjMatrix)):
-	#		for j in range (0, len(adjMatrix)):
-	#			adjMatrix[i][j] = isLinked(i,j)
-	#	return adjMatrix		
+	def generateSolution(self):
+		clients = self.assignClients()
+		routerPos = self.assignRouters()		
+		routerRanges = self.assignRouterRanges()
+		return Solucion.Solucion(clients, routerPos, routerRanges)
