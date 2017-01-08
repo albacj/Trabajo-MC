@@ -1,6 +1,6 @@
 import Vector2D
 import random
-##########
+
 class Client: 
 
 	def __init__(self, position : Vector2D.Vector2D):
