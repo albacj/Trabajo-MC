@@ -18,9 +18,7 @@ class Vector2D(object):
 			res = self.x == other.x and self.y == other.y
 		return res
 
-
 def getEuclideanDistance(v0, v1):
 	x2 = (v1.x - v0.x)**2
 	y2 = (v1.y - v0.y)**2
 	return math.sqrt(x2 + y2)
-

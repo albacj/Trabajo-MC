@@ -43,27 +43,3 @@ class Movimiento(object):
 			return newSolution
 		else:
 			print("ERROR. Some values are set to -1")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		

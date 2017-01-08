@@ -37,11 +37,11 @@ class AlgoritmoTabu(object):
 	#=====================
 
 	def resetTabuAlgorithm(self):
-		self.tl = [[[0 for k in range(self.gridSize.y)] for j in range(self.gridSize.x)] for i in range(self.routerCount)]
+		self.tl = [[[0 for k in range(int(self.gridSize.y))] for j in range(int(self.gridSize.x))] for i in range(self.routerCount)]
 		self.th = [False for k in range(self.tabuSize)]
-		self.frequency = [[[0 for k in range(self.gridSize.y)] for j in range(self.gridSize.x)] for i in range(self.routerCount)]
+		self.frequency = [[[0 for k in range(int(self.gridSize.y))] for j in range(int(self.gridSize.x))] for i in range(self.routerCount)]
 		self.tFrequency = [0 for k in range(self.routerCount)]
-		self.freqsBest = [[[0 for k in range(self.gridSize.y)] for j in range(self.gridSize.x)] for i in range(self.routerCount)]
+		self.freqsBest = [[[0 for k in range(int(self.gridSize.y))] for j in range(int(self.gridSize.x))] for i in range(self.routerCount)]
 		self.bestSols = []
 		self.currentIteration = 0
 
@@ -52,7 +52,6 @@ class AlgoritmoTabu(object):
 
 		def updateFreqBest(solution):
 			for r in range(solution.routerCount):
-		#s		solution = Solucion.Solucion(solution)
 				routerPosition = solution.routerPositions[r]
 				self.freqsBest[r][int(routerPosition.x)][int(routerPosition.y)] = self.freqsBest[r][int(routerPosition.x)][int(routerPosition.y)] + 1
 
@@ -153,59 +152,57 @@ class AlgoritmoTabu(object):
 				if neverHasBeenTabu:
 					admissible.append(s)
 				elif(self.aspirationCriteriaSatisfied(m,s)):
-					admissible.append(s)
-						
+					admissible.append(s)	
 		return admissible
 
+	#def generateTestSolution(self):
+	#	clients = []
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(1.0,3.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(8.0,8.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(3.0,1.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(2.0,2.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(12.0,9.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(11.0,5.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(2.0,12.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(9.0,6.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(5.0,5.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(7.0,11.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(15.0,9.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(7.0,0.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(9.0,15.0))) 
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(9.0,4.0))) 
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(5.0,13.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(13.0,12.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(6.0,9.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(4.0,8.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(10.0,2.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(0.0,12.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(2.0,8.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(10.0,11.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(0.0,6.0)))
+	#	clients.append(Solucion.Client(Vector2D.Vector2D(7.0,15.0)))
 
-	def generateTestSolution(self):
-		clients = []
-		clients.append(Solucion.Client(Vector2D.Vector2D(1.0,3.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(8.0,8.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(3.0,1.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,2.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(12.0,9.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(11.0,5.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,12.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(9.0,6.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(5.0,5.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(7.0,11.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(15.0,9.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(7.0,0.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(9.0,15.0))) 
-		clients.append(Solucion.Client(Vector2D.Vector2D(9.0,4.0))) 
-		clients.append(Solucion.Client(Vector2D.Vector2D(5.0,13.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(13.0,12.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(6.0,9.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(4.0,8.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(10.0,2.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(0.0,12.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,8.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(10.0,11.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(0.0,6.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(7.0,15.0)))
+	#	routersPosition = []
+	#	routersPosition.append(Vector2D.Vector2D(1.0,5.0))
+	#	routersPosition.append(Vector2D.Vector2D(6.0,7.0))
+	#	routersPosition.append(Vector2D.Vector2D(12.0,8.0))
+	#	routersPosition.append(Vector2D.Vector2D(14.0,3.0))
+	#	routersPosition.append(Vector2D.Vector2D(7.0,13.0))
+	#	routersPosition.append(Vector2D.Vector2D(3.0,6.0))
+	#	routersPosition.append(Vector2D.Vector2D(4.0,11.0))
+	#	routersPosition.append(Vector2D.Vector2D(2.0,15.0))
 
-		routersPosition = []
-		routersPosition.append(Vector2D.Vector2D(1.0,5.0))
-		routersPosition.append(Vector2D.Vector2D(6.0,7.0))
-		routersPosition.append(Vector2D.Vector2D(12.0,8.0))
-		routersPosition.append(Vector2D.Vector2D(14.0,3.0))
-		routersPosition.append(Vector2D.Vector2D(7.0,13.0))
-		routersPosition.append(Vector2D.Vector2D(3.0,6.0))
-		routersPosition.append(Vector2D.Vector2D(4.0,11.0))
-		routersPosition.append(Vector2D.Vector2D(2.0,15.0))
-
-		routersRange = []
-		routersRange.append(2.0)
-		routersRange.append(1.0)
-		routersRange.append(3.0)
-		routersRange.append(2.0)
-		routersRange.append(2.0)
-		routersRange.append(1.0)
-		routersRange.append(3.0)
-		routersRange.append(3.0)
-		sol = Solucion.Solucion(clients,routersPosition,routersRange)
-		return sol
+	#	routersRange = []
+	#	routersRange.append(2.0)
+	#	routersRange.append(1.0)
+	#	routersRange.append(3.0)
+	#	routersRange.append(2.0)
+	#	routersRange.append(2.0)
+	#	routersRange.append(1.0)
+	#	routersRange.append(3.0)
+	#	routersRange.append(3.0)
+	#	sol = Solucion.Solucion(clients,routersPosition,routersRange)
+	#	return sol
 
 	def terminationCondition(self, solution, numberOfRouters):
 		solution = Solucion.Solucion(solution)
@@ -334,7 +331,6 @@ class AlgoritmoTabu(object):
 			solution.routerPositions[router] = newPosition
 
 		return solution
-
 
 	#==========
 	# ALGORITMO

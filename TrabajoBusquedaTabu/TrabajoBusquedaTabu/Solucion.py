@@ -1,6 +1,6 @@
 import Vector2D
 import random
-##########
+
 class Client: 
 
 	def __init__(self, position : Vector2D.Vector2D):
@@ -9,7 +9,7 @@ class Client:
 hashing = None
 
 def generateHashing(largeHash : int, routerCount : int, gridSize : Vector2D.Vector2D):
-	h = [[[random.randint(1, largeHash) for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(routerCount)]
+	h = [[[random.randint(1, largeHash) for k in range(int(gridSize.y))] for j in range(int(gridSize.x))] for i in range(routerCount)]
 	return h
 
 class Solucion:
@@ -100,7 +100,6 @@ class Solucion:
 			while(len(pendingRouters) > 0):
 				currentRouter = pendingRouters.pop()
 				neighbors = getNeighborsRouters(currentRouter, routerCount, adjMatrix)
-
 				# Eliminamos de neighbors los routers ya visitados
 				neighbors.difference_update(connectedComponent)
 				# Eliminamos de routers los routers que queden en neighbors
@@ -109,9 +108,7 @@ class Solucion:
 				connectedComponent.update(neighbors)
 				# Aniadimos a la lista de routers pendientes los vecinos para visitarlos en las proximas iteraciones
 				pendingRouters.extend(neighbors)
-
 			result.append(connectedComponent)
-
 		return result
 
 	def getHash(self):

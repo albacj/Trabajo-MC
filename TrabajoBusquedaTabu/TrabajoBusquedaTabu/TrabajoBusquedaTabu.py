@@ -1,19 +1,16 @@
 # Main class
-#import Vector2D
-#import Solucion
-#import SolutionGenerator
+
+import Vector2D
+import Solucion
+import SolutionGenerator
 import AlgoritmoTabu
 
+gridSize_x = input("Introduzca la anchura del tablero: ")
+gridSize_y = input("Introduzca la altura del tablero: ")
+factork = input("Introduzca el factor k: ")
+probabilityDistribution = input("Introduzca el tipo de Probabilidad. 0 = Uniforme, 1 = Normal, 2 = Exponencial, 3 = Weibull")
 
-#for row in sol.adjMatrix:
-#	print(row)
-#ccs = sol.getConnectedComponents(len(routersPosition), sol.adjMatrix)
-#print(ccs)
-#giant = sol.giantCompSize
-#users = sol.connectedUsers
-#print(giant, users)
-
-tabuSearch = AlgoritmoTabu.AlgoritmoTabu(4,4,1,4)
+tabuSearch = AlgoritmoTabu.AlgoritmoTabu(int(gridSize_x),int(gridSize_y),float(factork), int(probabilityDistribution))
 
 best = tabuSearch.TabuSearch()
 print("Fin de Busqueda Tabu")
