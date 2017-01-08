@@ -1,6 +1,6 @@
 import math
 import random
-import copy
+
 import Vector2D
 import Movimiento
 import Solucion
@@ -41,31 +41,22 @@ class AlgoritmoTabu(object):
 		self.th = [False for k in range(self.tabuSize)]
 		self.frequency = [[[0 for k in range(self.gridSize.y)] for j in range(self.gridSize.x)] for i in range(self.routerCount)]
 		self.tFrequency = [0 for k in range(self.routerCount)]
-		self.freqsBest = [[[0 for k in range(self.gridSize.y)] for j in range(self.gridSize.x)] for i in range(self.routerCount)]
 		self.bestSols = []
 		self.currentIteration = 0
 
 	def setSolutionToBestSols(self, solution):
 
 		def sortBestSol():
-			sorted(self.bestSols, key = self.fitness)
-
-		def updateFreqBest(solution):
-			for r in range(solution.routerCount):
-				solution = Solucion.Solucion(solution)
-				routerPosition = solution.routerPositions[r]
-				self.freqsBest[r][int(routerPosition.x)][int(routerPosition.y)] = self.freqsBest[r][int(routerPosition.x)][int(routerPosition.y)] + 1
+			sorted(self.bestSols, key = fitness)
 
 		if(len(self.bestSols) < self.eliteSize):
 			self.bestSols.append(solution)
-			updateFreqBest(solution)
 			sortBestSol()
 		else:
 			for i in range(len(self.bestSols)):
 				best = self.bestSols[i]
 				if(fitness(best) < fitness(solution)):
-					self.bestSols[i] = solution
-					updateFreqBest(solution)
+					self.bestSols[i] = best
 					break
 
 	def setTabu(self, movement : Movimiento.Movimiento):
@@ -221,74 +212,6 @@ class AlgoritmoTabu(object):
 				movementCandidate = m
 		return solutionCandidate, movementCandidate
 
-	def applyIntensification(self, solution):
-
-		def rollDice(prob):
-			n = random.random()
-			return n <= prob
-
-		def probXY(r, x, y):
-			return self.freqsBest[r][x][y] / N
-		
-		positions = [None for i in range(self.routerCount)]
-		clients = copy.deepcopy(self.solution.clients)
-		routerRanges = copy.deepcopy(self.solution.routerRanges)
-		N = 0
-		for r in range(solution.routerCount):
-			for y in range(self.gridSize.y):
-				for x in range(self.gridSize.x):
-					N = N + self.freqsBest[r][x][y]
-
-		for r in range(solution.routerCount):
-			placed = False
-			while(not placed):
-				for y in range(self.gridSize.y):
-					for x in range(self.gridSize.x):
-						prob = probXY(r,x,y)
-						if rollDice(prob):
-							positions[r] = Vector2D.Vector2D(x,y)
-							placed = True
-							break
-					if placed:
-						break
-		return Solucion.Solucion(clients, positions, routerRanges)
-
-	def applySoftDiversification(self, solution):
-
-		def getSortedTFrequency():
-			tFreqSorted = copy.deepcopy(self.tFrequency)
-			tFreqSorted = sorted(reversed(tFreqSorted))
-			return tFreqSorted
-
-		def getMostFrequentPosition(router):
-			positionCandidate = None
-			freqCandidate = -1
-			for position in solution.routerPositions:
-				freq = self.freqsBest[router][int(position.x)][int(position.y)]
-				if freq > freqCandidate:
-					freqCandidate = freq
-					positionCandidate = position
-			return positionCandidate
-
-		tFreqSorted = getSortedTFrequency()
-		lasts = len(self.freqsBest)* random.(0.05, 0.1)
-		lasts = int(lasts)
-		takenLasts = tFreqSorted[len(self.freqsBest)-lasts:] #cojo los 10% ultimos elementos de freqsBest?
-		for i in takenLasts:
-			if i in tFreqSorted:
-				routersToMoveRange.append(tFreqSorted.index(i))
-		#aux = len(self.freqsBest) * random.uniform(0.05, 0.1)
-		#aux = int(aux)
-		#routersToMoveRange = [] # los indices
-		for r in routersToMoveRange:
-			solution.routerPositions[r] = getMostFrequentPosition(r)
-
-		return solution
-
-	def applyStrongDiversification(self,solution):
-		pass
-
-
 	#==========
 	# ALGORITMO
 	#==========
@@ -332,15 +255,27 @@ class AlgoritmoTabu(object):
 				self.tFrequency[router1] = self.tFrequency[router1] + 1
 				self.tFrequency[router2] = self.tFrequency[router2] + 1
 
-			self.setSolutionToBestSols(bestLocal)
+			setSolutionToBestSols(bestLocal)
 
-			#intensification
-			if(self.iterationsPerIntensificationDiversification == self.currentIteration):
-				currentSolution = self.applyIntensification(currentSolution)
-				
-			#diversification
-			if(self.iterationsPerIntensificationDiversification == self.currentIteration):
-				currentSolution = self.applySoftDiversification(currentSolution)
+			#self.best_sols.append(bestSolution)
+			#if(math.log2(max(gridSize.x, gridSize.y)) == ):
+			#	self.freqsBest = [[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))]
+			#	self.pxy = freqsBest / (freqsBest[[[r for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(routerList))])
+			#if(math.log2(max(gridSize.x, gridSize.y)) == ):
+			#	#soft
+			#	for r in self.routerList:
+			#		self.tFrequency.append(r)
+			#	self.tFrequency.sort(reverse = True)
+			#	# cojo los primeros 10% de los routers para cambiarles la posicion acorde a freqsBests
+			#	toChange10 = self.tFrequency[0:len(tFrequency)*0.1]
+			#	self.freqsBest = [[[t for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(toChange10))]
+			#	#strong
+			#	#se cambia el 25% de los routers de posicion
+			#	#la nueva solucion se genera a partir de la actual
+			#	toChange25 = elf.tFrequency[0:len(tFrequency)*0.25]
+			#	self.freqsBest = [[[t for k in range(gridSize.y)] for j in range(gridSize.x)] for i in range(len(toChange25))]
+			#	initialSolution = initialSolution + freqsBest
+			#	bestSolution = initialSolution
 
 			self.currentIteration = self.currentIteration + 1
 		return bestSolution
