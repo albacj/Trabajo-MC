@@ -10,7 +10,7 @@ class Vector2D(object):
 		return "(" + str(self.x) + "," + str(self.y) + ")"
 
 	def __repr__(self):
-		return "(" + self.x + "," + self.y + ")"
+		return "(" + str(self.x) + "," + str(self.y) + ")"
 
 	def __eq__(self, other):
 		res = False

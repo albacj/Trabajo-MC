@@ -1,6 +1,6 @@
 import Vector2D
 import random
-
+##########
 class Client: 
 
 	def __init__(self, position : Vector2D.Vector2D):
@@ -86,9 +86,10 @@ class Solucion:
 			neighbors = set()
 			adjRow = adjMatrix[routerIndex]
 			# Recorre todos las posiciones que corresponden a los routers
-			for router in adjRow[0:routerCount]:
-				if router == 1:
-					neighbors.add(router)
+			for i in range(routerCount):
+				value = adjRow[i]
+				if value == 1:
+					neighbors.add(i)
 			return neighbors
 
 		while(len(routers) > 0):
