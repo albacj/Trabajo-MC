@@ -27,7 +27,7 @@ class AlgoritmoTabu(object):
 		self.maxTabuStatus = routerCount / 2
 		self.eliteSize = eliteSize
 		self.aspirationValue = (self.maxTabuStatus / 2) - math.log2(self.maxTabuStatus)
-		self.iterationsPerIntensificationDiversification = math.log2(max(sizeGridX,sizeGridY))
+		self.iterationsPerIntensificationDiversification = int(math.log2(max(sizeGridX,sizeGridY)))
 
 		Solucion.hashing = Solucion.generateHashing(self.tabuSize * 4, self.routerCount, self.gridSize)
 		self.resetTabuAlgorithm()
@@ -52,7 +52,7 @@ class AlgoritmoTabu(object):
 
 		def updateFreqBest(solution):
 			for r in range(solution.routerCount):
-				solution = Solucion.Solucion(solution)
+		#s		solution = Solucion.Solucion(solution)
 				routerPosition = solution.routerPositions[r]
 				self.freqsBest[r][int(routerPosition.x)][int(routerPosition.y)] = self.freqsBest[r][int(routerPosition.x)][int(routerPosition.y)] + 1
 
@@ -63,7 +63,7 @@ class AlgoritmoTabu(object):
 		else:
 			for i in range(len(self.bestSols)):
 				best = self.bestSols[i]
-				if(fitness(best) < fitness(solution)):
+				if(self.fitness(best) < self.fitness(solution)):
 					self.bestSols[i] = solution
 					updateFreqBest(solution)
 					break
@@ -161,30 +161,49 @@ class AlgoritmoTabu(object):
 	def generateTestSolution(self):
 		clients = []
 		clients.append(Solucion.Client(Vector2D.Vector2D(1.0,3.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(8.0,8.0)))
 		clients.append(Solucion.Client(Vector2D.Vector2D(3.0,1.0)))
 		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,2.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,0.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(1.0,0.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,3.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(7.0,7.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(12.0,9.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(11.0,5.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,12.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(9.0,6.0)))
 		clients.append(Solucion.Client(Vector2D.Vector2D(5.0,5.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,7.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(6.0,3.0)))
-		clients.append(Solucion.Client(Vector2D.Vector2D(4.0,7.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(7.0,11.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(15.0,9.0)))
 		clients.append(Solucion.Client(Vector2D.Vector2D(7.0,0.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(9.0,15.0))) 
+		clients.append(Solucion.Client(Vector2D.Vector2D(9.0,4.0))) 
+		clients.append(Solucion.Client(Vector2D.Vector2D(5.0,13.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(13.0,12.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(6.0,9.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(4.0,8.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(10.0,2.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(0.0,12.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(2.0,8.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(10.0,11.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(0.0,6.0)))
+		clients.append(Solucion.Client(Vector2D.Vector2D(7.0,15.0)))
 
 		routersPosition = []
-		routersPosition.append(Vector2D.Vector2D(7.0,5.0))
-		routersPosition.append(Vector2D.Vector2D(0.0,5.0))
-		routersPosition.append(Vector2D.Vector2D(3.0,5.0))
-		routersPosition.append(Vector2D.Vector2D(0.0,7.0))
-		
-		routersRange = []
-		routersRange.append(1.0)
-		routersRange.append(1.0)
-		routersRange.append(2.0)
-		routersRange.append(2.0)
+		routersPosition.append(Vector2D.Vector2D(1.0,5.0))
+		routersPosition.append(Vector2D.Vector2D(6.0,7.0))
+		routersPosition.append(Vector2D.Vector2D(12.0,8.0))
+		routersPosition.append(Vector2D.Vector2D(14.0,3.0))
+		routersPosition.append(Vector2D.Vector2D(7.0,13.0))
+		routersPosition.append(Vector2D.Vector2D(3.0,6.0))
+		routersPosition.append(Vector2D.Vector2D(4.0,11.0))
+		routersPosition.append(Vector2D.Vector2D(2.0,15.0))
 
+		routersRange = []
+		routersRange.append(2.0)
+		routersRange.append(1.0)
+		routersRange.append(3.0)
+		routersRange.append(2.0)
+		routersRange.append(2.0)
+		routersRange.append(1.0)
+		routersRange.append(3.0)
+		routersRange.append(3.0)
 		sol = Solucion.Solucion(clients,routersPosition,routersRange)
 		return sol
 
@@ -231,8 +250,8 @@ class AlgoritmoTabu(object):
 			return self.freqsBest[r][x][y] / N
 		
 		positions = [None for i in range(self.routerCount)]
-		clients = copy.deepcopy(self.solution.clients)
-		routerRanges = copy.deepcopy(self.solution.routerRanges)
+		clients = copy.deepcopy(solution.clients)
+		routerRanges = copy.deepcopy(solution.routerRanges)
 		N = 0
 		for r in range(solution.routerCount):
 			for y in range(self.gridSize.y):
@@ -257,7 +276,7 @@ class AlgoritmoTabu(object):
 
 		def getSortedTFrequency():
 			tFreqSorted = copy.deepcopy(self.tFrequency)
-			tFreqSorted = sorted(reversed(tFreqSorted))
+			tFreqSorted = sorted(tFreqSorted)
 			return tFreqSorted
 
 		def getMostFrequentPosition(router):
@@ -271,22 +290,50 @@ class AlgoritmoTabu(object):
 			return positionCandidate
 
 		tFreqSorted = getSortedTFrequency()
-		lasts = len(self.freqsBest)* random.(0.05, 0.1)
+		lasts = len(self.freqsBest) * random.uniform(0.05, 0.1)
 		lasts = int(lasts)
-		takenLasts = tFreqSorted[len(self.freqsBest)-lasts:] #cojo los 10% ultimos elementos de freqsBest?
+		takenLasts = tFreqSorted[:lasts] #cojo los 10% elementos de freqsBest?
+		routersToMoveRange = []
 		for i in takenLasts:
-			if i in tFreqSorted:
-				routersToMoveRange.append(tFreqSorted.index(i))
-		#aux = len(self.freqsBest) * random.uniform(0.05, 0.1)
-		#aux = int(aux)
-		#routersToMoveRange = [] # los indices
+			routersToMoveRange.append(tFreqSorted.index(i))
 		for r in routersToMoveRange:
 			solution.routerPositions[r] = getMostFrequentPosition(r)
-
 		return solution
 
 	def applyStrongDiversification(self,solution):
-		pass
+
+		def getRandomRouter():
+			router = None
+			while(router == None):
+				rndRouter = random.randint(0, self.routerCount - 1)
+				if rndRouter not in changedRouters:
+					router = rndRouter
+			return router
+
+		def getRandomPosition(routerPos):
+			position = None
+			while(position == None):
+				x = random.randint(0, self.gridSize.x - 1)
+				y = random.randint(0, self.gridSize.y - 1)
+				rndPosition = Vector2D.Vector2D(x,y)
+				if rndPosition != routerPos:
+					rndPositionDontOverlapAnyRouter = True
+					for position in solution.routerPositions:
+						if rndPosition == position:
+							rndPositionDontOverlapAnyRouter = False
+							break
+					if rndPositionDontOverlapAnyRouter:
+						position = rndPosition
+			return position
+
+		changedRouters = []
+		numRoutersToChange = int(self.routerCount * 0.25)
+		for i in range(numRoutersToChange):
+			router = getRandomRouter()
+			newPosition = getRandomPosition(solution.routerPositions[router])
+			solution.routerPositions[router] = newPosition
+
+		return solution
 
 
 	#==========
@@ -297,21 +344,32 @@ class AlgoritmoTabu(object):
 	
 		# Generar solucion inicial
 		initialSolution = self.generateTestSolution() #s
-		currentSolution = initialSolution # s'
-		bestSolution = initialSolution # s gorrito
+		currentSolution = initialSolution #s'
+		bestSolution = initialSolution #s gorrito
 		self.resetTabuAlgorithm()
 		self.setVisited(initialSolution)
-		#not terminationCondition(bestSolution, routerCount
+		maxPenaltyValue = 5
+		currentPenaltyValue = 0
+		previousBestSolutionFitness = 0
+		
 		while(self.currentIteration < self.maxIteration):
 			print("Iteracion actual: " + str(self.currentIteration))
 			movements, neighbourhood = self.getNeighbourhood(currentSolution)
 			admissibleSet = self.getAdmissibleSet(movements, neighbourhood)
 			bestLocal, bestMovement = self.withBestFitness(admissibleSet, movements)
-			
 			currentSolution = bestLocal
 			
 			if(self.fitness(currentSolution) > self.fitness(bestSolution)):
 				bestSolution = currentSolution
+				previousBestSolutionFitness = self.fitness(bestSolution)
+				if previousBestSolutionFitness == 1.0:
+					break
+			else:
+				currentPenaltyValue = currentPenaltyValue + 1
+
+			print("Hash: " + str(bestLocal.getHash()))
+			print("Fitness de la iteracion: " + str(self.fitness(bestLocal)))
+			print("Fitness de la mejor solucion: " + str(previousBestSolutionFitness))
 
 			##update recency and frequency
 			self.setTabu(bestMovement)
@@ -334,14 +392,17 @@ class AlgoritmoTabu(object):
 
 			self.setSolutionToBestSols(bestLocal)
 
-			#intensification
-			if(self.iterationsPerIntensificationDiversification == self.currentIteration):
-				currentSolution = self.applyIntensification(currentSolution)
-				
-			#diversification
-			if(self.iterationsPerIntensificationDiversification == self.currentIteration):
-				currentSolution = self.applySoftDiversification(currentSolution)
+			if currentPenaltyValue >= maxPenaltyValue:
+				print("Aplicando intensificacion y diversificacion a la solucion")
+				for i in range(self.iterationsPerIntensificationDiversification):
+					#intensification
+					currentSolution = self.applyIntensification(currentSolution)
+					#diversification
+					currentSolution = self.applySoftDiversification(currentSolution)
+					currentSolution = self.applyStrongDiversification(currentSolution)
+				currentPenaltyValue = 0
 
 			self.currentIteration = self.currentIteration + 1
+
 		return bestSolution
 		print (bestSolution)

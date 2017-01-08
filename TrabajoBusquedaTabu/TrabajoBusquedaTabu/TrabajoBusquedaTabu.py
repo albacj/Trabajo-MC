@@ -13,6 +13,21 @@ import AlgoritmoTabu
 #users = sol.connectedUsers
 #print(giant, users)
 
-tabuSearch = AlgoritmoTabu.AlgoritmoTabu(8,8,4,12,1,0)
+tabuSearch = AlgoritmoTabu.AlgoritmoTabu(16,16,8,24,1,0)
 best = tabuSearch.TabuSearch()
-print(best)
+print("Fin de Busqueda Tabu")
+print("Matriz de adyacencia")
+for row in best.adjMatrix:
+	print(row)
+print("Tamaño componente gigante")
+print(best.giantCompSize)
+print("Numero de clientes conectados a componente gigante")
+print(best.connectedClients)
+print("Posicion de routers")
+for pos in best.routerPositions:
+	print(pos)
+print("Posicion de clientes")
+for c in best.clients:
+	print(c.position)
+print("Rango de routers")
+print(best.routerRanges)

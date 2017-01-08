@@ -1,6 +1,6 @@
 import Vector2D
 import random
-
+##########
 class Client: 
 
 	def __init__(self, position : Vector2D.Vector2D):
@@ -20,7 +20,8 @@ class Solucion:
 		self.routerPositions = routersPosition
 		self.routerRanges = routerRanges
 		self.adjMatrix = self.generateSolution(clients, routersPosition, routerRanges)
-		self.giantCompSize = self.getGiantComponentSize(self.routerCount)
+		self.giantComponent = self.getGiantComponent(self.routerCount)
+		self.giantCompSize = len(self.giantComponent)
 		self.connectedClients = self.getConnectedClients(self.routerCount,self.adjMatrix)
 	
 	
@@ -62,12 +63,9 @@ class Solucion:
 				adjMatrix[i][j] = isLinked(i,j)
 		return adjMatrix
 
-	def getGiantComponentSize(self, routerCount):
+	def getGiantComponent(self, routerCount):
 		connectedComponents = self.getConnectedComponents(routerCount, self.adjMatrix)
-		return len(max(connectedComponents, key=len))
-
-	def clientInGiantComponent(self, clients, routerPositions):
-		pass
+		return max(connectedComponents, key=len)
 			
 	# Este método debe calcular los usuarios conectados a routers
 	def getConnectedClients(self, routerCount, adjMatrix):
@@ -75,7 +73,7 @@ class Solucion:
 		# Recorremos las filas de la matriz que corresponda solo a usuarios
 		for row in range(routerCount, len(adjMatrix)):
 			for col in range(len(adjMatrix[row])):
-				if adjMatrix[row][col] == 1:
+				if col in self.giantComponent and adjMatrix[row][col] == 1:
 					connectedClients = connectedClients + 1
 					break
 		return connectedClients
@@ -88,9 +86,10 @@ class Solucion:
 			neighbors = set()
 			adjRow = adjMatrix[routerIndex]
 			# Recorre todos las posiciones que corresponden a los routers
-			for router in adjRow[0:routerCount]:
-				if router == 1:
-					neighbors.add(router)
+			for i in range(routerCount):
+				value = adjRow[i]
+				if value == 1:
+					neighbors.add(i)
 			return neighbors
 
 		while(len(routers) > 0):
