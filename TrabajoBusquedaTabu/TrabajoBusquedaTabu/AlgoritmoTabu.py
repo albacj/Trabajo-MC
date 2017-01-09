@@ -23,6 +23,7 @@ class AlgoritmoTabu(object):
 		self.routerCount = self.initialSolution.routerCount
 		self.clientCount = self.initialSolution.clientCount
 		self.maxIteration = int(sizeGridX * sizeGridY * kFactor)
+		print("Maximo de iteraciones: " + str(self.maxIteration))
 		self.startChoice = startChoice
 		self.tabuSize = tabuSize
 		self.maxTabuStatus = self.routerCount / 2
