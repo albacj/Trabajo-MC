@@ -22,19 +22,19 @@ class SolutionGenerator:
 
 		def getUniformProbability():
 			s = np.random.uniform(0.1,1.0,elementSize)
-			return s[x]
+			return max(s[x],0.01)
 
 		def getNormalProbability():
 			s = np.random.normal(0, 0.1, elementSize) # mu = 0, sigma = 0.1
-			return s[x]
+			return max(s[x],0.01)
 
 		def getExponentialProbability():
 			s = np.random.exponential(1.0, elementSize)
-			return s[x]
+			return max(s[x],0.01)
 
 		def getWeibullProbability():
-			s = np.random.weibull(5.0, elementSize) # a = 5
-			return s[x]
+			s = np.random.weibull(4.0, elementSize) # a = 4
+			return max(s[x],0.01)
 
 		if self.generationType == 0:
 			return getUniformProbability()
@@ -51,25 +51,25 @@ class SolutionGenerator:
 			n = random.random()
 			return n < prob
 
-		clientPositions = []
 		clientSize = self.getnumClients()
+		clientPositions = [None for i in range(clientSize)]
 		pendingClients = clientSize
 		currentClient = 0
+		prob = self.getProbability(currentClient, clientSize)
 		while(pendingClients > 0):
-			prob = self.getProbability(currentClient, clientSize)
-			clientIsPlaced = False
 			for y in range(int(self.gridSize.y)):
 				for x in range (int(self.gridSize.x)):
-					pos = Vector2D.Vector2D(x,y)
-					if pos not in clientPositions:
+					client = Solucion.Client(Vector2D.Vector2D(x,y))
+					if client not in clientPositions:
 						if (rollDice(prob)):
-							clientPositions.append(Solucion.Client(pos))
+							clientPositions[currentClient] = client
 							currentClient = currentClient + 1
 							pendingClients = pendingClients - 1
-							clientIsPlaced = True
-							break
-				if clientIsPlaced:
-					break
+							if pendingClients == 0:
+								return clientPositions
+							else:
+								prob = self.getProbability(currentClient, clientSize)
+
 		return clientPositions
 
 	def assignRouters(self):
@@ -78,25 +78,24 @@ class SolutionGenerator:
 			n = random.random()
 			return n < prob
 
-		routerPositions = []
 		routerSize = self.getNumRouters()
+		routerPositions = [None for i in range(routerSize)]
 		pendingRouters = routerSize
 		currentRouter = 0
+		prob = self.getProbability(currentRouter, routerSize)
 		while(pendingRouters > 0):
-			prob = self.getProbability(currentRouter, routerSize)
-			routerIsPlaced = False
 			for y in range(int(self.gridSize.y)):
 				for x in range (int(self.gridSize.x)):
 					pos = Vector2D.Vector2D(x,y)
 					if pos not in routerPositions:
 						if (rollDice(prob)):
-							routerPositions.append(pos)
+							routerPositions[currentRouter] = pos
 							currentRouter = currentRouter + 1
 							pendingRouters = pendingRouters - 1
-							routerIsPlaced = True
-							break
-				if routerIsPlaced:
-					break
+							if pendingRouters == 0:
+								return routerPositions
+							else:
+								prob = self.getProbability(currentRouter, routerSize)
 
 		return routerPositions
 

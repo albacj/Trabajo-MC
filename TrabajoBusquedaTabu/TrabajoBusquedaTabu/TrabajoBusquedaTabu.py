@@ -8,12 +8,12 @@ import AlgoritmoTabu
 gridSize_x = input("Introduzca la anchura del tablero: ")
 gridSize_y = input("Introduzca la altura del tablero: ")
 factork = input("Introduzca el factor k: ")
-probabilityDistribution = input("Introduzca el tipo de Probabilidad. 0 = Uniforme, 1 = Normal, 2 = Exponencial, 3 = Weibull")
-
+probabilityDistribution = input("Introduzca el tipo de Probabilidad. 0 = Uniforme, 1 = Normal, 2 = Exponencial, 3 = Weibull: ")
+print("Cargando configuracion seleccionada")
 tabuSearch = AlgoritmoTabu.AlgoritmoTabu(int(gridSize_x),int(gridSize_y),float(factork), int(probabilityDistribution))
 
 best = tabuSearch.TabuSearch()
-print("Fin de Busqueda Tabu")
+print("\nFin de Busqueda Tabu\n")
 print("Matriz de adyacencia")
 for row in best.adjMatrix:
 	print(row)

@@ -6,6 +6,12 @@ class Client:
 	def __init__(self, position : Vector2D.Vector2D):
 		self.position = position
 
+	def __eq__(self, other):
+		res = False
+		if isinstance(other, Client):
+			res = self.position == other.position
+		return res
+
 hashing = None
 
 def generateHashing(largeHash : int, routerCount : int, gridSize : Vector2D.Vector2D):
