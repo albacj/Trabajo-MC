@@ -304,6 +304,8 @@ class AlgoritmoTabu(object):
 			print("Iteracion actual: " + str(self.currentIteration))
 			movements, neighbourhood = self.getNeighbourhood(currentSolution)
 			admissibleSet = self.getAdmissibleSet(movements, neighbourhood)
+			if admissibleSet == []:
+				return bestSolution
 			bestLocal, bestMovement = self.withBestFitness(admissibleSet, movements)
 			currentSolution = bestLocal
 			

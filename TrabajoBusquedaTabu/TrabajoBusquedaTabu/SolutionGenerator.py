@@ -50,7 +50,7 @@ class SolutionGenerator:
 		def getWeibullProbability():
 			xSet = np.linspace(0.5,2.0,elementSize)
 			s = weibull(1.0, 5.0, xSet[x])
-			return s
+			return max(s, 0.05)
 
 		if self.generationType == 0:
 			return getUniformProbability()
