@@ -22,7 +22,7 @@ class AlgoritmoTabu(object):
 		self.initialSolution = SolutionGenerator.SolutionGenerator(self.gridSize,startChoice).generateSolution()
 		self.routerCount = self.initialSolution.routerCount
 		self.clientCount = self.initialSolution.clientCount
-		self.maxIteration = sizeGridX * sizeGridY * kFactor
+		self.maxIteration = int(sizeGridX * sizeGridY * kFactor)
 		self.startChoice = startChoice
 		self.tabuSize = tabuSize
 		self.maxTabuStatus = self.routerCount / 2
@@ -116,14 +116,15 @@ class AlgoritmoTabu(object):
 					position = Vector2D.Vector2D(float(x),float(y))
 					if position == originalPosition:
 						continue
-					thereIsARouter = False
-					routerInThisPlace = None
-					for r in range(len(solution.routerPositions)):
-						p = solution.routerPositions[r]
-						if p == position:
-							thereIsARouter = True
-							routerInThisPlace = r
-							break
+					thereIsARouter = position in solution.routerPositions
+					if thereIsARouter:
+						routerInThisPlace = solution.routerPositions.index(position)
+					#for r in range(len(solution.routerPositions)):
+					#	p = solution.routerPositions[r]
+					#	if p == position:
+					#		thereIsARouter = True
+					#		routerInThisPlace = r
+					#		break
 					movement = Movimiento.Movimiento(solution)
 					if(thereIsARouter):
 						movement.swap(router, routerInThisPlace)

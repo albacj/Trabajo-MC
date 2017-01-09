@@ -1,0 +1,211 @@
+Cargando configuracion seleccionada
+Generando solucion inicial
+Iniciando busqueda
+Iteracion actual: 0
+Fitness de la iteracion: 0.5625 - Tamaño componente gigante: 6 - Numero de clientes conectados: 9
+Fitness de la mejor solucion: 0.5625 - Tamaño componente gigante: 6 - Numero de clientes conectados: 9
+Iteracion actual: 1
+Fitness de la iteracion: 0.7083333333333334 - Tamaño componente gigante: 8 - Numero de clientes conectados: 10
+Fitness de la mejor solucion: 0.7083333333333334 - Tamaño componente gigante: 8 - Numero de clientes conectados: 10
+Iteracion actual: 2
+Fitness de la iteracion: 0.7708333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 13
+Fitness de la mejor solucion: 0.7708333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 13
+Iteracion actual: 3
+Fitness de la iteracion: 0.8125 - Tamaño componente gigante: 8 - Numero de clientes conectados: 15
+Fitness de la mejor solucion: 0.8125 - Tamaño componente gigante: 8 - Numero de clientes conectados: 15
+Iteracion actual: 4
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Iteracion actual: 5
+Fitness de la iteracion: 0.8541666666666667 - Tamaño componente gigante: 8 - Numero de clientes conectados: 17
+Fitness de la mejor solucion: 0.8541666666666667 - Tamaño componente gigante: 8 - Numero de clientes conectados: 17
+Iteracion actual: 6
+Fitness de la iteracion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 7
+Fitness de la iteracion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 8
+Fitness de la iteracion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 9
+Fitness de la iteracion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 10
+Fitness de la iteracion: 0.7708333333333333 - Tamaño componente gigante: 7 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 11
+Fitness de la iteracion: 0.8541666666666667 - Tamaño componente gigante: 8 - Numero de clientes conectados: 17
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 12
+Fitness de la iteracion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 13
+Fitness de la iteracion: 0.8125 - Tamaño componente gigante: 8 - Numero de clientes conectados: 15
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 14
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 15
+Fitness de la iteracion: 0.8541666666666667 - Tamaño componente gigante: 8 - Numero de clientes conectados: 17
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 16
+Fitness de la iteracion: 0.7291666666666667 - Tamaño componente gigante: 7 - Numero de clientes conectados: 14
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 17
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 18
+Fitness de la iteracion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 19
+Fitness de la iteracion: 0.6041666666666666 - Tamaño componente gigante: 6 - Numero de clientes conectados: 11
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 20
+Fitness de la iteracion: 0.75 - Tamaño componente gigante: 7 - Numero de clientes conectados: 15
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 21
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 22
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 23
+Fitness de la iteracion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Fitness de la mejor solucion: 0.875 - Tamaño componente gigante: 8 - Numero de clientes conectados: 18
+Iteracion actual: 24
+Fitness de la iteracion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 25
+Fitness de la iteracion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 26
+Fitness de la iteracion: 0.6458333333333333 - Tamaño componente gigante: 6 - Numero de clientes conectados: 13
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 27
+Fitness de la iteracion: 0.8125 - Tamaño componente gigante: 8 - Numero de clientes conectados: 15
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 28
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 29
+Fitness de la iteracion: 0.75 - Tamaño componente gigante: 8 - Numero de clientes conectados: 12
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 30
+Fitness de la iteracion: 0.8125 - Tamaño componente gigante: 8 - Numero de clientes conectados: 15
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 31
+Fitness de la iteracion: 0.8541666666666667 - Tamaño componente gigante: 8 - Numero de clientes conectados: 17
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 32
+Fitness de la iteracion: 0.6875 - Tamaño componente gigante: 7 - Numero de clientes conectados: 12
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 33
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 34
+Fitness de la iteracion: 0.8541666666666667 - Tamaño componente gigante: 8 - Numero de clientes conectados: 17
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 35
+Fitness de la iteracion: 0.8125 - Tamaño componente gigante: 8 - Numero de clientes conectados: 15
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 36
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 37
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Aplicando intensificacion y diversificacion a la solucion actual
+Iteracion actual: 38
+Fitness de la iteracion: 0.8125 - Tamaño componente gigante: 8 - Numero de clientes conectados: 15
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+Iteracion actual: 39
+Fitness de la iteracion: 0.8333333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 16
+Fitness de la mejor solucion: 0.8958333333333333 - Tamaño componente gigante: 8 - Numero de clientes conectados: 19
+
+Fin de Busqueda Tabu
+
+Matriz de adyacencia
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+[0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0]
+[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Tamaño componente gigante
+8
+Numero de clientes conectados a componente gigante
+19
+Posicion de routers
+(13.0,9.0)
+(7,12)
+(5,3)
+(7,5)
+(10.0,3.0)
+(2,3)
+(0.0,0.0)
+(10,7)
+Posicion de clientes
+(0,0)
+(1,3)
+(6,14)
+(1,1)
+(4,3)
+(11,6)
+(2,8)
+(13,8)
+(7,15)
+(10,2)
+(11,5)
+(7,3)
+(1,13)
+(15,13)
+(7,5)
+(10,10)
+(13,10)
+(13,13)
+(7,14)
+(5,3)
+(14,3)
+(4,4)
+(7,4)
+(8,9)
+Rango de routers
+[1, 3, 2, 1, 1, 2, 2, 3]
+El subproceso 'MainThread' (0x1aa8) terminó con código 0 (0x0).
+El programa '[10020] python.exe' terminó con código 0 (0x0).

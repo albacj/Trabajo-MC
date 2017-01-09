@@ -2,7 +2,7 @@ import Vector2D
 import Solucion 
 import numpy as np
 import random
-
+import math
 
 class SolutionGenerator:
 
@@ -20,21 +20,37 @@ class SolutionGenerator:
 
 	def getProbability(self, x, elementSize):
 
+		def uniform(a, b):
+			return 1 / (b - a)
+
+		def gaussian(x, mu, sig):
+			return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.)))
+
+		def exponential(a, x):
+			return a * math.e**(-a*x)
+
+		def weibull(l,k,x):
+			return (k/l) * ((x/l)**k-1) * (math.e**(-(x/l)**k))
+
 		def getUniformProbability():
-			s = np.random.uniform(0.1,1.0,elementSize)
-			return max(s[x],0.01)
+			xSet = np.linspace(0,elementSize,elementSize)
+			s = uniform(0, elementSize)
+			return s
 
 		def getNormalProbability():
-			s = np.random.normal(0, 0.1, elementSize) # mu = 0, sigma = 0.1
-			return max(s[x],0.01)
+			xSet = np.linspace(-4,7,elementSize)
+			s = gaussian(xSet[x], 2, 3)
+			return s
 
 		def getExponentialProbability():
-			s = np.random.exponential(1.0, elementSize)
-			return max(s[x],0.01)
+			xSet = np.linspace(0.0,3.0,elementSize)
+			s = exponential(1.0, xSet[x])
+			return s
 
 		def getWeibullProbability():
-			s = np.random.weibull(4.0, elementSize) # a = 4
-			return max(s[x],0.01)
+			xSet = np.linspace(0.5,2.0,elementSize)
+			s = weibull(1.0, 5.0, xSet[x])
+			return s
 
 		if self.generationType == 0:
 			return getUniformProbability()
